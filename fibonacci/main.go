@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -11,12 +12,35 @@ func main() {
 	ul, err := getUserInput()
 
 	for err != nil {
-		fmt.Print("Invalid input: ")
-		fmt.Println(err)
+		if err != nil {
+			fmt.Print("Invalid input: ")
+			fmt.Println(err)
+		}
+
 		ul, err = getUserInput()
 	}
 
-	fmt.Println(ul)
+	printSequence(ul)
+}
+
+func printSequence(upperLimit int) {
+	fmt.Print("0, ")
+
+	a := 0
+	b := 1
+
+	for b <= upperLimit {
+		fmt.Printf("%d", b)
+		x := a
+		a = b
+		b = x + b
+
+		if b <= upperLimit {
+			fmt.Print(", ")
+		}
+	}
+
+	fmt.Println("")
 }
 
 func getUserInput() (n int, err error) {
@@ -29,5 +53,13 @@ func getUserInput() (n int, err error) {
 		return 0, err
 	}
 
-	return strconv.Atoi(text)
+	n, err = strconv.Atoi(text)
+
+	if err != nil {
+		return 0, err
+	} else if n <= 0 {
+		return n, errors.New("must be greater than or equal to one")
+	}
+
+	return n, err
 }
