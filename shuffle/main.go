@@ -72,6 +72,6 @@ func main() {
 
 	fmt.Printf("\nShuffling deck...\n\n")
 
-	shuffled := deck.Shuffle()
-	shuffled.Show()
+	deck = deck.Shuffle()
+	deck.Show()
 }
