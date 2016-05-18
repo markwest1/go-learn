@@ -21,6 +21,7 @@ func main() {
 	}
 
 	printSequence(ul)
+	fmt.Println("")
 }
 
 func printSequence(upperLimit int) {
@@ -39,8 +40,6 @@ func printSequence(upperLimit int) {
 			fmt.Print(", ")
 		}
 	}
-
-	fmt.Println("")
 }
 
 func getUserInput() (n int, err error) {
